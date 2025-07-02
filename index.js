@@ -9,6 +9,8 @@ const Book = function (title, author, pages) {
 
 Book.prototype.booksArr = [];
 
+const booksArr = Book.prototype.booksArr;
+
 Book.prototype.addBook = function () {
     this.booksArr.push(this);
 }
@@ -23,11 +25,17 @@ const book2 = new Book('The Hunger Games', 'Suzzane Collins', 374);
 book1.addBook();
 book2.addBook();
 
-// const body = document.querySelector('body');
+const body = document.querySelector('body');
 
-// for (const element of Book.prototype.booksArr) {
-//     const paragraph = document.createElement('p');
-//     paragraph.style.backgroundColor = 'blue';
-//     paragraph.textContent += JSON.stringify(element);
-//     body.appendChild(paragraph);
-// }
+for (const element of booksArr) {
+    const div = document.createElement('div');
+    div.setAttribute('style', 'border: 1px solid blue; margin: 10px; padding: 10px; width: fit-content;')
+    body.appendChild(div);
+    for (const property in element) {
+        if (booksArr[0].hasOwnProperty(property) && property !== 'id') {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = `${property}: ${element[property]}`;
+            div.appendChild(paragraph)
+        }
+    }
+}
