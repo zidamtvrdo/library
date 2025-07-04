@@ -119,4 +119,17 @@ form.addEventListener('submit', (e) => {
         booksGrid.removeChild(div);
         element.removeBook();
     })
+    const readBtn = document.createElement('button');
+    readBtn.style.marginLeft= '5px';
+    readBtn.textContent = 'Not Read';
+    div.appendChild(readBtn);
+
+    readBtn.addEventListener('click', (e) => {
+        if (e.target.textContent == 'Read') {
+            e.target.textContent = 'Not Read';
+        } else {
+            e.target.textContent = 'Read';
+            e.target.parentNode.read= 'Not Read';
+        }
+    })
 })
