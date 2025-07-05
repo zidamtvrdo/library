@@ -4,14 +4,13 @@
 function representBooks() {
     for (const element of booksArr) {
         const div = document.createElement('div');
-        div.setAttribute('style', 'border: 1px solid blue; margin: 10px; padding: 10px;');
+        div.setAttribute('style', 'border: 3px solid red; margin: 10px; padding: 10px;');
         const booksGrid = document.querySelector('#books');
         booksGrid.appendChild(div);
 
         for (const property in element) {
             if (booksArr[0].hasOwnProperty(property) && property !== 'id') {
                 const paragraph = document.createElement('p');
-                // paragraph.classList.add(`${}`)
                 paragraph.textContent = `${property}: ${element[property]}`;
                 div.appendChild(paragraph)
             }
@@ -25,7 +24,7 @@ function representBooks() {
             booksGrid.removeChild(div);
             element.removeBook();
         })
-       
+         
         const readBtn = document.createElement('button');
         readBtn.style.marginLeft= '5px';
         readBtn.textContent = 'Is Read';
@@ -34,11 +33,16 @@ function representBooks() {
         readBtn.addEventListener('click', (e) => {
             element.isRead();
             e.target.parentNode.lastChild.previousSibling.previousSibling.textContent = `read: ${element.read}`;
+            if (element.read == 'Yes') {
+                e.target.parentNode.style.border = '3px solid green';
+            } else {
+                e.target.parentNode.style.border = '3px solid red'
+            }
         })
     }
 }
 
-const Book = function (title, author, pages, read = 'not read') {
+const Book = function (title, author, pages, read = 'No') {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
@@ -59,7 +63,7 @@ Book.prototype.removeBook = function () {
 }
 
 Book.prototype.isRead = function () {
-    this.read == 'not read' ? this.read = 'read' : this.read = 'not read';
+    this.read == 'No' ? this.read = 'Yes' : this.read = 'No';
 }
 
 const book1 = new Book('To Kill a Mockingbird', 'Harper Lee', 323);
@@ -67,7 +71,6 @@ const book2 = new Book('The Hunger Games', 'Suzzane Collins', 374);
 
 book1.addBook();
 book2.addBook();
-book2.isRead();
 
 const body = document.querySelector('body');
 
@@ -81,7 +84,8 @@ const form = document.querySelector('form');
 addBook.addEventListener('click', () => {
     booksGrid.insertBefore(form, booksGrid.firstChild);
     form.style.display = 'block';
-    form.setAttribute('style', 'display: grid; place-items: center; padding: 20px;')
+    document.querySelector('#title').focus();
+    form.setAttribute('style', 'display: grid; place-items: center; padding: 20px; border: 3px solid yellow;')
 })
 
 form.addEventListener('submit', (e) => {
@@ -102,7 +106,7 @@ form.addEventListener('submit', (e) => {
 
     // create new book card
     const div = document.createElement('div');
-    div.setAttribute('style', 'border: 1px solid blue; margin: 10px; padding: 10px;');
+    div.setAttribute('style', 'border: 3px solid red; margin:0px; padding: 10px;');
     const booksGrid = document.querySelector('#books');
     booksGrid.appendChild(div);
 
@@ -122,17 +126,14 @@ form.addEventListener('submit', (e) => {
         booksGrid.removeChild(div);
         element.removeBook();
     })
+    
     const readBtn = document.createElement('button');
     readBtn.style.marginLeft= '5px';
-    readBtn.textContent = 'Not Read';
+    readBtn.textContent = 'Is Read';
     div.appendChild(readBtn);
 
     readBtn.addEventListener('click', (e) => {
-        if (e.target.textContent == 'Read') {
-            e.target.textContent = 'Not Read';
-        } else {
-            e.target.textContent = 'Read';
-            e.target.parentNode.read= 'Not Read';
-        }
+        newBook.isRead();
+        e.target.parentNode.lastChild.previousSibling.previousSibling.textContent = `read: ${newBook.read}`;
     })
 })
