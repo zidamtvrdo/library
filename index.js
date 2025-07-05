@@ -43,6 +43,9 @@ function representBooks() {
 }
 
 const Book = function (title, author, pages, read = 'No') {
+    if (!new.target) {
+        throw Error('You have to use \'new\' keyword for creating Book object.');
+    }
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
