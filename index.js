@@ -11,6 +11,7 @@ function representBooks() {
         for (const property in element) {
             if (booksArr[0].hasOwnProperty(property) && property !== 'id') {
                 const paragraph = document.createElement('p');
+                // paragraph.classList.add(`${}`)
                 paragraph.textContent = `${property}: ${element[property]}`;
                 div.appendChild(paragraph)
             }
@@ -27,25 +28,22 @@ function representBooks() {
        
         const readBtn = document.createElement('button');
         readBtn.style.marginLeft= '5px';
-        readBtn.textContent = 'Not Read';
+        readBtn.textContent = 'Is Read';
         div.appendChild(readBtn);
 
         readBtn.addEventListener('click', (e) => {
-            if (e.target.textContent == 'Read') {
-                e.target.textContent = 'Not Read';
-            } else {
-                e.target.textContent = 'Read';
-                e.target.parentNode.read= 'Not Read';
-            }
+            element.isRead();
+            e.target.parentNode.lastChild.previousSibling.previousSibling.textContent = `read: ${element.read}`;
         })
     }
 }
 
-const Book = function (title, author, pages) {
+const Book = function (title, author, pages, read = 'not read') {
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.read = read;
 }
 
 Book.prototype.booksArr = [];
@@ -60,11 +58,16 @@ Book.prototype.removeBook = function () {
     this.booksArr.splice(this.booksArr.indexOf(this), 1);
 }
 
+Book.prototype.isRead = function () {
+    this.read == 'not read' ? this.read = 'read' : this.read = 'not read';
+}
+
 const book1 = new Book('To Kill a Mockingbird', 'Harper Lee', 323);
 const book2 = new Book('The Hunger Games', 'Suzzane Collins', 374);
 
 book1.addBook();
 book2.addBook();
+book2.isRead();
 
 const body = document.querySelector('body');
 
@@ -133,4 +136,3 @@ form.addEventListener('submit', (e) => {
         }
     })
 })
-// need to be polished
