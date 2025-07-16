@@ -40,11 +40,11 @@ class Book {
     }
 
     addBook() {
-        booksArr.push(this)
+        Book.booksArr.push(this)
     }
 
     removeBook() {
-        booksArr.splice(bookArr.indexOf(this), 1);
+        Book.booksArr.splice(bookArr.indexOf(this), 1);
     }
 
     isRead () {
