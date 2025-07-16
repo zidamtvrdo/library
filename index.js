@@ -1,5 +1,59 @@
 "use strict";
 
+// const Book = function (title, author, pages, read = 'No') {
+//     if (!new.target) {
+//         throw Error('You have to use \'new\' keyword for creating Book object.');
+//     }
+//     this.id = crypto.randomUUID();
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
+// }
+
+// Book.prototype.booksArr = [];
+
+// const booksArr = Book.prototype.booksArr;
+
+// Book.prototype.addBook = function () {
+//     this.booksArr.push(this);
+// }
+
+// Book.prototype.removeBook = function () {
+//     this.booksArr.splice(this.booksArr.indexOf(this), 1);
+// }
+
+// Book.prototype.isRead = function () {
+//     this.read == 'No' ? this.read = 'Yes' : this.read = 'No';
+// }
+
+class Book {
+
+    static booksArr = [];
+
+    constructor (title, author, pages, read = 'No') {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    addBook() {
+        booksArr.push(this)
+    }
+
+    removeBook() {
+        booksArr.splice(bookArr.indexOf(this), 1);
+    }
+
+    isRead () {
+        this.read == 'No' ? this.read = 'Yes' : this.read = 'No';
+    }
+
+}
+
+const booksArr = Book.booksArr;
 
 function representBooks() {
     for (const element of booksArr) {
@@ -42,32 +96,7 @@ function representBooks() {
     }
 }
 
-const Book = function (title, author, pages, read = 'No') {
-    if (!new.target) {
-        throw Error('You have to use \'new\' keyword for creating Book object.');
-    }
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
 
-Book.prototype.booksArr = [];
-
-const booksArr = Book.prototype.booksArr;
-
-Book.prototype.addBook = function () {
-    this.booksArr.push(this);
-}
-
-Book.prototype.removeBook = function () {
-    this.booksArr.splice(this.booksArr.indexOf(this), 1);
-}
-
-Book.prototype.isRead = function () {
-    this.read == 'No' ? this.read = 'Yes' : this.read = 'No';
-}
 
 const book1 = new Book('To Kill a Mockingbird', 'Harper Lee', 323);
 const book2 = new Book('The Hunger Games', 'Suzzane Collins', 374);
