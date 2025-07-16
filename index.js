@@ -39,12 +39,12 @@ class Book {
         this.read = read;
     }
 
-    addBook() {
-        Book.booksArr.push(this)
+    static addBook(book) {
+        Book.booksArr.push(book)
     }
 
-    removeBook() {
-        Book.booksArr.splice(bookArr.indexOf(this), 1);
+    static removeBook(book) {
+        Book.booksArr.splice(Book.booksArr.indexOf(book), 1);
     }
 
     isRead () {
@@ -76,7 +76,7 @@ function representBooks() {
 
         delBtn.addEventListener('click', () => {
             booksGrid.removeChild(div);
-            element.removeBook();
+            Book.removeBook(element);
         })
          
         const readBtn = document.createElement('button');
@@ -101,8 +101,8 @@ function representBooks() {
 const book1 = new Book('To Kill a Mockingbird', 'Harper Lee', 323);
 const book2 = new Book('The Hunger Games', 'Suzzane Collins', 374);
 
-book1.addBook();
-book2.addBook();
+Book.addBook(book1);
+Book.addBook(book2);
 
 const body = document.querySelector('body');
 
@@ -131,7 +131,7 @@ form.addEventListener('submit', (e) => {
     const pagesValue = pagesInput.value;
 
     const newBook = new Book(titleValue, authorValue, pagesValue);
-    newBook.addBook();
+    Book.addBook(newBook);
 
     e.target.style.display = 'none';
 
@@ -156,7 +156,7 @@ form.addEventListener('submit', (e) => {
 
     delBtn.addEventListener('click', () => {
         booksGrid.removeChild(div);
-        element.removeBook();
+        Book.removeBook(element);
     })
     
     const readBtn = document.createElement('button');
