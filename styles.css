@@ -1,29 +1,29 @@
 html {
-    font-family: 'Montserrat', 'Roboto', system-ui;
+  font-family: "Montserrat", "Roboto", system-ui;
 }
+
 body {
-    background-color: rgb(119, 119, 216);    
+  background-color: rgb(119, 119, 216);
 }
 
 h1 {
-    text-align: center;
-    color: rgb(255, 255, 255);
-    letter-spacing: 0.15rem;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.15rem;
 }
 
 #addButton {
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
 }
 
-
 #books {
-    width: 80%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: 230px;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 230px;
 }
 
 form {
-    display: none;
+  display: none;
 }
